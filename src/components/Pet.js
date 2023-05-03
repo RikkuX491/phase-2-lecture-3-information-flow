@@ -1,6 +1,6 @@
 import {useState} from "react"
 
-function Pet({pet}){
+function Pet({pet, adoptPet}){
 
     const [favorite, setFavorite] = useState(false)
     
@@ -17,7 +17,9 @@ function Pet({pet}){
             }} className="favorite-button">☆</button>
             )}
             <h4>{pet.name}</h4>
-            <button className="adopt-button">Adopt</button>
+            <button onClick={() => {
+                adoptPet(pet.id)
+            }} className="adopt-button">Adopt</button>
         </li>
     )
 }
