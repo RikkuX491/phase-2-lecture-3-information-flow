@@ -6,7 +6,7 @@ function App() {
 
   const [searchText, setSearchText] = useState("")
 
-  const pets = [
+  const [pets, setPets] = useState([
     {
         id: 1,
         name: "Fido",
@@ -42,7 +42,7 @@ function App() {
         name: "Goldie",
         image: "./images/fish.jpeg"
     }
-  ]
+  ])
 
   const filteredPets = pets.filter(pet => {
     if(searchText === ""){
@@ -51,10 +51,16 @@ function App() {
     return pet.name.toUpperCase().includes(searchText.toUpperCase())
   })
 
+  function deletePet(id){
+    setPets(pets.filter(pet => {
+      return pet.id !== id
+    }))
+  }
+
   return (
     <div className="app">
       <Header />
-      <PetPage pets={filteredPets} setSearchText={setSearchText} />
+      <PetPage pets={filteredPets} setSearchText={setSearchText} deletePet={deletePet} />
     </div>
   );
 }
